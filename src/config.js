@@ -6,8 +6,6 @@ const RammerheadJSFileCache = require('./classes/RammerheadJSFileCache.js');
 
 const enableWorkers = os.cpus().length !== 1;
 
-console.log(os.cpus());
-
 module.exports = {
     //// HOSTING CONFIGURATION ////
 
