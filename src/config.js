@@ -15,7 +15,7 @@ module.exports = {
     publicDir: path.join(__dirname, '../public'), // set to null to disable
 
     // enable or disable multithreading
-    enableWorkers: false,
+    enableWorkers,
     workers: os.cpus().length,
 
     // ssl object is either null or { key: fs.readFileSync('path/to/key'), cert: fs.readFileSync('path/to/cert') }
