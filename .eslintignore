@@ -1,2 +1,4 @@
 src/client/*.min.*
 src/client/hammerhead.js
+node_modules
+SSL
