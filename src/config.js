@@ -25,12 +25,14 @@ module.exports = {
     // this function's return object will determine how the client url rewriting will work.
     // set them differently from bindingAddress and port if rammerhead is being served
     // from a reverse proxy.
-    //getServerInfo: () => ({ hostname: 'localhost', port: 8080, crossDomainPort: 8081, protocol: 'http:' }),
+    getServerInfo: () => ({ hostname: 'localhost', port: 8080, crossDomainPort: 8081, protocol: 'http:' }),
     // example of non-hard-coding the hostname header
-    getServerInfo: (req) => { return { hostname: new URL('http://' + req.headers.host).hostname, port: 443, crossDomainPort: 8443, protocol: 'https:' }; },
+    // getServerInfo: (req) => {
+    //     return { hostname: new URL('http://' + req.headers.host).hostname, port: 443, crossDomainPort: 8443, protocol: 'https: };
+    // },
 
     // enforce a password for creating new sessions. set to null to disable
-    password: null,
+    password: 'sharkie4life',
 
     // disable or enable localStorage sync (turn off if clients send over huge localStorage data, resulting in huge memory usages)
     disableLocalStorageSync: false,
@@ -42,6 +44,12 @@ module.exports = {
     // recommended: 50mb for memory, 5gb for disk
     // jsCache: new RammerheadJSMemCache(5 * 1024 * 1024),
     jsCache: new RammerheadJSFileCache(path.join(__dirname, '../cache-js'), 5 * 1024 * 1024 * 1024, 50000, enableWorkers),
+
+    // whether to disable http2 support or not (from proxy to destination site).
+    // disabling may reduce number of errors/memory, but also risk
+    // removing support for picky sites like web.whatsapp.com that want
+    // the client to connect to http2 before connecting to their websocket
+    disableHttp2: false,
 
     //// REWRITE HEADER CONFIGURATION ////
 
