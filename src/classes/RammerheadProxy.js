@@ -443,7 +443,7 @@ class RammerheadProxy extends Proxy {
             port: serverInfo.port,
             crossDomainPort: serverInfo.crossDomainPort || this.crossDomainPort || serverInfo.port,
             protocol: serverInfo.protocol,
-            domain: `${serverInfo.protocol}//${serverInfo.hostname}:${serverInfo.protocol === 'https:' ? '' : serverInfo.port}`,
+            domain: `${serverInfo.protocol}//${serverInfo.hostname}${serverInfo.protocol === 'https:' ? '' : ':' + serverInfo.port}`,
             cacheRequests: false
         };
     }
