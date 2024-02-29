@@ -28,8 +28,8 @@ module.exports = {
     //getServerInfo: () => ({ hostname: 'localhost', port: 8080, crossDomainPort: 8081, protocol: 'http:' }),
     // example of non-hard-coding the hostname header
     getServerInfo: (req) => {
-        return { hostname: new URL('http://' + req.headers.host).hostname, port: 443, crossDomainPort: 8443, protocol: 'https:' };
-    },
+        return { hostname: req.get('host'), port: 443, crossDomainPort: 8443, protocol: 'https:' };
+    }, // new URL('http://' + req.headers.hostanme).hostname
 
     // enforce a password for creating new sessions. set to null to disable
     password: null,
