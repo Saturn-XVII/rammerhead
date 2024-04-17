@@ -29,7 +29,7 @@ module.exports = {
     //getServerInfo: () => ({ hostname: 'localhost', port: 8080, crossDomainPort: 8081, protocol: 'http:' }),
     // example of non-hard-coding the hostname header
     getServerInfo: (req) => {
-        console.log(req.get('host'));
+        console.log(req.host);
         return { hostname: '', port: this.port, crossDomainPort: this.crossDomainPort, protocol: this.port == 443 ? 'https:' : 'http:' };
     }, // new URL('http://' + req.headers.hostname).hostname
     
@@ -38,7 +38,7 @@ module.exports = {
     password: null,
 
     // disable or enable localStorage sync (turn off if clients send over huge localStorage data, resulting in huge memory usages)
-    disableLocalStorageSync: false,
+    disableLocalStorageSync: true,
 
     // restrict sessions to be only used per IP
     restrictSessionToIP: true,
