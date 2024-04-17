@@ -29,8 +29,8 @@ module.exports = {
     //getServerInfo: () => ({ hostname: 'localhost', port: 8080, crossDomainPort: 8081, protocol: 'http:' }),
     // example of non-hard-coding the hostname header
     getServerInfo: (req) => {
-        console.log('http://' + req.URL);
-        return { hostname: new URL('http://' + req.headers.hostname).hostname, port: this.port, crossDomainPort: this.crossDomainPort, protocol: this.port == 443 ? 'https:' : 'http:' };
+        console.log(req.get('host'));
+        return { hostname: '', port: this.port, crossDomainPort: this.crossDomainPort, protocol: this.port == 443 ? 'https:' : 'http:' };
     }, // new URL('http://' + req.headers.hostname).hostname
     
 
