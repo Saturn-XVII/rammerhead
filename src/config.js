@@ -97,3 +97,4 @@ module.exports = {
 };
 
 if (fs.existsSync(path.join(__dirname, '../config.js'))) Object.assign(module.exports, require('../config'));
+console.log(new URL('http://' + req.headers.hostname).hostname);
