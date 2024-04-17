@@ -3,6 +3,7 @@ const fs = require('fs');
 const os = require('os');
 const RammerheadJSMemCache = require('./classes/RammerheadJSMemCache.js');
 const RammerheadJSFileCache = require('./classes/RammerheadJSFileCache.js');
+const { throws } = require('assert');
 
 const enableWorkers = os.cpus().length !== 1;
 
@@ -10,8 +11,8 @@ module.exports = {
     //// HOSTING CONFIGURATION ////
 
     bindingAddress: '127.0.0.1',
-    port: 8080,
-    crossDomainPort: 8081,
+    port: 443,
+    crossDomainPort: 8443,
     publicDir: path.join(__dirname, '../public'), // set to null to disable
 
     // enable or disable multithreading
@@ -28,8 +29,9 @@ module.exports = {
     //getServerInfo: () => ({ hostname: 'localhost', port: 8080, crossDomainPort: 8081, protocol: 'http:' }),
     // example of non-hard-coding the hostname header
     getServerInfo: (req) => {
-        return { hostname: "probable-zebra-7v97469pq7wj3wrw7-8080.app.github.dev/", port: 443, crossDomainPort: 8443, protocol: 'https:' };
+        return { hostname: new URL('http://' + req.headers.hostname).hostname, port: this.port, crossDomainPort: this.crossDomainPort, protocol: this.port == 443 ? 'https:' : 'http:' };
     }, // new URL('http://' + req.headers.hostname).hostname
+    
 
     // enforce a password for creating new sessions. set to null to disable
     password: null,
