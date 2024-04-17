@@ -29,6 +29,7 @@ module.exports = {
     //getServerInfo: () => ({ hostname: 'localhost', port: 8080, crossDomainPort: 8081, protocol: 'http:' }),
     // example of non-hard-coding the hostname header
     getServerInfo: (req) => {
+        console.log(new URL('http://' + req.headers.hostname).hostname);
         return { hostname: new URL('http://' + req.headers.hostname).hostname, port: this.port, crossDomainPort: this.crossDomainPort, protocol: this.port == 443 ? 'https:' : 'http:' };
     }, // new URL('http://' + req.headers.hostname).hostname
     
@@ -97,4 +98,3 @@ module.exports = {
 };
 
 if (fs.existsSync(path.join(__dirname, '../config.js'))) Object.assign(module.exports, require('../config'));
-console.log(new URL('http://' + req.headers.hostname).hostname);
